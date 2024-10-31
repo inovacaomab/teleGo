@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="pageTitle">Tele Go APP</title>
-    <meta name="description" data-i18n="metaDescription" content="Tele Go APP - Acesse facilmente seu APP de mensagens.">
-    <meta name="keywords" content="Tele Go, Inovação MAB, Telegram, Comunicação, Simples, Funcional">
+    <title data-i18n="pageTitle">Телега Быстро</title>
+    <meta name="description" data-i18n="metaDescription" content="Телега Быстро - Acesse facilmente seu APP de mensagens.">
+    <meta name="keywords" content="What's Go, Inovação MAB, Телега Быстро, Telegram, Comunicação, Simples, Funcional">
     <meta name="author" content="Inovação MAB">
-    <meta property="og:title" data-i18n="ogTitle" content="What's Go APP"/>
-    <meta property="og:description" data-i18n="ogDescription" content="Simplifique o acesso ao seu app de mensagens com Tele Go!"/>
+    <meta property="og:title" data-i18n="ogTitle" content="Телега Быстро"/>
+    <meta property="og:description" data-i18n="ogDescription" content="Simplifique o acesso ao seu app de mensagens com Телега Быстро!"/>
     <meta property="og:image" content="https://example.com/thumbnail.jpg"/>
     <meta property="og:url" content="https://www.inovacaomab.com/whatsgoapp">
     
@@ -57,11 +57,11 @@
 </head>
 <body>
     <div class="container">
-        <img src="iconeprincipal.jpg" alt="Tele Go Logo" id="logo">
-        <h1 id="appName">Tele Go</h1>
+        <img src="iconeprincipal.jpg" alt="What's Go Logo" id="logo">
+        <h1 id="appName">Телега Быстро</h1>
         <input type="tel" id="phoneNumber" data-i18n-placeholder="phonePlaceholder">
         <textarea id="messageText" data-i18n-placeholder="messagePlaceholder"></textarea>
-        <button onclick="openTelegram()" data-i18n="startChat">Iniciar Chat</button>
+        <button onclick="openWhatsApp()" data-i18n="startChat">Iniciar Chat</button>
 
         <!-- Seletor de idioma movido para depois do botão -->
         <div class="language-selector">
@@ -357,30 +357,32 @@
             document.querySelector('#languageSelect').value = savedLanguage;
             updatePageLanguage(savedLanguage);
 
-            // Função para abrir Telegram
-window.openTelegram = function() { // Você pode renomear para openTelegram se quiser
-    var message = encodeURIComponent(document.querySelector('#messageText').value);
-    var phoneNumber = phoneNumberInput.value.replace(/\D/g,'');
-    var countryData = iti.getSelectedCountryData();
-    var dialCode = countryData.dialCode;
-    phoneNumber = phoneNumber; // No Telegram não precisamos do + e código do país
-    
-    if (phoneNumber) {
-        var url = `https://t.me/${phoneNumber}`; // URL do Telegram
-        if (message) {
-            url += `?text=${message}`;
-        }
-        window.open(url, '_blank');
-        gtag('event', 'click', {
-            'event_category': 'Telegram Chat', // Atualizado para Telegram
-            'event_label': 'Initiate Chat',
-            'value': phoneNumber
+            // Função para abrir WhatsApp
+            window.openWhatsApp = function() {
+                var message = encodeURIComponent(document.querySelector('#messageText').value);
+                var phoneNumber = phoneNumberInput.value.replace(/\D/g,'');
+                var countryData = iti.getSelectedCountryData();
+                var dialCode = countryData.dialCode;
+                phoneNumber = '+' + dialCode + phoneNumber;
+                
+                if (phoneNumber) {
+                    var url = `https://t.me/${phoneNumber}`;
+                    if (message) {
+                        url += `?text=${message}`;
+                    }
+                    window.open(url, '_blank');
+                    gtag('event', 'click', {
+                        'event_category': 'WhatsApp Chat',
+                        'event_label': 'Initiate Chat',
+                        'value': phoneNumber
+                    });
+                } else {
+                    const lang = document.documentElement.lang;
+                    alert(translations[lang].phoneError);
+                }
+            }
         });
-    } else {
-        const lang = document.documentElement.lang;
-        alert(translations[lang].phoneError);
-    }
-}
+
         // Google Analytics
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
