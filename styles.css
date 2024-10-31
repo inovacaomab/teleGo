@@ -44,7 +44,7 @@ textarea {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #25D366;
+    background-color: #0088cc;
     color: white;
     border: none;
     cursor: pointer;
@@ -52,12 +52,12 @@ button {
 }
 
 #developed {
-    color: #25D366; /* Verde padrão */
+    color: #0088cc; /* Azul Telegram */
     margin-bottom: 10px; /* Espaço entre texto e ícones sociais */
 }
 .bottom-icons {
         border: 2px solid black; /* Define a largura, estilo e cor da borda */
-		border-color: #25D366; /* Verde padrão */
+		border-color: #0088cc; /* Azul Telegram */
         padding: 10px; /* Adiciona um pouco de espaço interno */
     }
 .social-links {
