@@ -7,17 +7,17 @@
     <meta name="description" data-i18n="metaDescription" content="Tele Go APP - Acesse facilmente seu APP de mensagens.">
     <meta name="keywords" content="Tele Go, Inovação MAB, Telegram, Comunicação, Simples, Funcional">
     <meta name="author" content="Inovação MAB">
-    <meta property="og:title" data-i18n="ogTitle" content="What's Go APP"/>
+    <meta property="og:title" data-i18n="ogTitle" content="Tele Go APP"/>
     <meta property="og:description" data-i18n="ogDescription" content="Simplifique o acesso ao seu app de mensagens com Tele Go!"/>
     <meta property="og:image" content="https://example.com/thumbnail.jpg"/>
-    <meta property="og:url" content="https://www.inovacaomab.com/whatsgoapp">
+    <meta property="og:url" content="https://www.inovacaomab.com/telegoapp">
     
-    <!-- Seus CSS existentes -->
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Scripts existentes -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YQTBMJMDF"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6742040663921517" crossorigin="anonymous"></script>
@@ -25,7 +25,6 @@
     <link rel="icon" type="image/x-icon" href="iconezinho.ico">
     
     <style>
-        /* Estilo para o seletor de idioma */
         .language-selector {
             text-align: center;
             margin: 15px 0;
@@ -44,7 +43,6 @@
             border-color: #999;
         }
         
-        /* Mantém os estilos existentes do seu site e apenas ajusta o container */
         .container {
             display: flex;
             flex-direction: column;
@@ -61,9 +59,8 @@
         <h1 id="appName">Tele Go</h1>
         <input type="tel" id="phoneNumber" data-i18n-placeholder="phonePlaceholder">
         <textarea id="messageText" data-i18n-placeholder="messagePlaceholder"></textarea>
-        <button onclick="openWhatsApp()" data-i18n="startChat">Iniciar Chat</button>
+        <button onclick="openTelegram()" data-i18n="startChat">Iniciar Chat</button>
 
-        <!-- Seletor de idioma movido para depois do botão -->
         <div class="language-selector">
             <select id="languageSelect" onchange="changeLanguage(this.value)">
                 <option value="pt-BR">Português</option>
@@ -86,18 +83,19 @@
                 <a href="https://www.inovacaomab.com">Inovação MAB</a>
             </p>
             <div class="social-links">
-                <a href="https://www.instagram.com/whats_go_app" target="_blank" onclick="trackSocialClick('Instagram')" data-i18n-title="followInstagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@whatsgoapp" target="_blank" onclick="trackSocialClick('YouTube')" data-i18n-title="subscribeYoutube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/inovacao_mab" target="_blank" onclick="trackSocialClick('Instagram')" data-i18n-title="followInstagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@inovacaomab" target="_blank" onclick="trackSocialClick('YouTube')" data-i18n-title="subscribeYoutube"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.linkedin.com/company/inovacao-mab/" target="_blank" onclick="trackSocialClick('LinkedIn')" data-i18n-title="followLinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://whatsapp.com/channel/0029Va5uO93FcowAHRjvWP0k" target="_blank" onclick="trackSocialClick('WhatsApp')" data-i18n-title="joinChannel"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://t.me/inovacaomab" target="_blank" onclick="trackSocialClick('Telegram')" data-i18n-title="joinChannel"><i class="fab fa-telegram"></i></a>
                 <br><br>
-                <a href="https://play.google.com/store/apps/details?id=com.inovacaomab.whatsgo" target="_blank" onclick="trackSocialClick('Instale o APP da Play Store')" data-i18n-title="installAndroid"><i class="fab fa-google-play"></i></a>
+                <a href="https://play.google.com/store/apps/details?id=com.inovacaomab.telego" target="_blank" onclick="trackSocialClick('Instale o APP da Play Store')" data-i18n-title="installAndroid"><i class="fab fa-google-play"></i></a>
             </div>
             <p id="glory" data-i18n="gloryMessage">A DEUS toda a Glória!</p>
         </footer>
     </div>
 
-    <!-- Dicionário de traduções -->
+    <script>
+        <!-- Dicionário de traduções -->
     <script>
         const translations = {
             'pt-BR': {
@@ -295,47 +293,46 @@
             const browserLang = navigator.language || navigator.userLanguage;
             const shortLang = browserLang.split('-')[0];
             
-            // Verifica se temos suporte para o idioma detectado
             if (translations[browserLang]) {
                 return browserLang;
             } else if (translations[shortLang]) {
                 return shortLang;
             }
             
-            return 'pt-BR'; // Idioma padrão
+            return 'pt-BR';
         }
 
-        // Função para atualizar todos os textos da página
+        // Função para atualizar textos da página
         function updatePageLanguage(lang) {
             document.documentElement.lang = lang;
             const texts = translations[lang];
 
-            // Atualiza meta tags
+            // Meta tags
             document.title = texts.pageTitle;
             document.querySelector('meta[name="description"]').content = texts.metaDescription;
             document.querySelector('meta[property="og:title"]').content = texts.ogTitle;
             document.querySelector('meta[property="og:description"]').content = texts.ogDescription;
 
-            // Atualiza placeholders
+            // Placeholders
             document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
                 const key = element.getAttribute('data-i18n-placeholder');
                 element.placeholder = texts[key];
             });
 
-            // Atualiza textos
+            // Textos
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 element.textContent = texts[key];
             });
 
-            // Atualiza títulos
+            // Títulos
             document.querySelectorAll('[data-i18n-title]').forEach(element => {
                 const key = element.getAttribute('data-i18n-title');
                 element.title = texts[key];
             });
         }
 
-        // Função para mudar o idioma
+        // Função para mudar idioma
         function changeLanguage(lang) {
             updatePageLanguage(lang);
             localStorage.setItem('preferredLanguage', lang);
@@ -343,9 +340,9 @@
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Configuração do telefone internacional
-            var phoneNumberInput = document.querySelector('#phoneNumber');
-            var iti = window.intlTelInput(phoneNumberInput, {
+            // Configuração do telefone
+            const phoneNumberInput = document.querySelector('#phoneNumber');
+            const iti = window.intlTelInput(phoneNumberInput, {
                 initialCountry: 'br',
                 preferredCountries: ['br', 'us'],
                 separateDialCode: true,
@@ -358,36 +355,37 @@
             updatePageLanguage(savedLanguage);
 
             // Função para abrir Telegram
-window.openTelegram = function() { // Você pode renomear para openTelegram se quiser
-    var message = encodeURIComponent(document.querySelector('#messageText').value);
-    var phoneNumber = phoneNumberInput.value.replace(/\D/g,'');
-    var countryData = iti.getSelectedCountryData();
-    var dialCode = countryData.dialCode;
-    phoneNumber = phoneNumber; // No Telegram não precisamos do + e código do país
-    
-    if (phoneNumber) {
-        var url = `https://t.me/${phoneNumber}`; // URL do Telegram
-        if (message) {
-            url += `?text=${message}`;
-        }
-        window.open(url, '_blank');
-        gtag('event', 'click', {
-            'event_category': 'Telegram Chat', // Atualizado para Telegram
-            'event_label': 'Initiate Chat',
-            'value': phoneNumber
-        });
-    } else {
-        const lang = document.documentElement.lang;
-        alert(translations[lang].phoneError);
-    }
-}
-        // Google Analytics
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-0YQTBMJMDF');
+            window.openTelegram = function() {
+                const message = encodeURIComponent(document.querySelector('#messageText').value);
+                const phoneNumber = phoneNumberInput.value.replace(/\D/g,'');
+                
+                if (phoneNumber) {
+                    let url = `https://t.me/${phoneNumber}`;
+                    if (message) {
+                        url += `?start=${message}`;
+                    }
+                    
+                    window.open(url, '_blank');
+                    
+                    gtag('event', 'click', {
+                        'event_category': 'Telegram Chat',
+                        'event_label': 'Initiate Chat',
+                        'value': phoneNumber
+                    });
+                } else {
+                    const lang = document.documentElement.lang;
+                    alert(translations[lang].phoneError);
+                }
+            }
 
-        // Função para rastrear cliques em redes sociais
+            // Google Analytics
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0YQTBMJMDF');
+        });
+
+        // Função para rastrear cliques sociais
         function trackSocialClick(serviceName) {
             gtag('event', 'click', {
                 'event_category': 'Social Media',
