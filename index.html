@@ -357,7 +357,36 @@
             document.querySelector('#languageSelect').value = savedLanguage;
             updatePageLanguage(savedLanguage);
 
-            // Função para abrir WhatsApp
+    window.openWhatsApp = function() {
+    var message = encodeURIComponent(document.querySelector('#messageText').value);
+    var phoneNumber = phoneNumberInput.value.replace(/\D/g,'');
+    var countryData = iti.getSelectedCountryData();
+    var dialCode = countryData.dialCode;
+    phoneNumber = '+' + dialCode + phoneNumber;
+
+    if (phoneNumber) {
+        // Construir a URL do Telegram no formato tg://
+        var url = `tg://resolve?phone=${phoneNumber}`; 
+        if (message) {
+            url += `&text=${message}`; 
+        }
+
+        // Chamar a função openTelegram da interface JavaScript (Android)
+        Android.openTelegram(url); 
+
+        // Manter o código para o Google Analytics
+        gtag('event', 'click', {
+            'event_category': 'WhatsApp Chat', // Pode ajustar a categoria se necessário
+            'event_label': 'Initiate Chat',
+            'value': phoneNumber
+        });
+    } else {
+        const lang = document.documentElement.lang;
+        alert(translations[lang].phoneError);
+    }
+}
+            
+            <--! // Função para abrir WhatsApp
             window.openWhatsApp = function() {
                 var message = encodeURIComponent(document.querySelector('#messageText').value);
                 var phoneNumber = phoneNumberInput.value.replace(/\D/g,'');
@@ -381,7 +410,7 @@
                     alert(translations[lang].phoneError);
                 }
             }
-        });
+        }); -->
 
         // Google Analytics
         window.dataLayer = window.dataLayer || [];
